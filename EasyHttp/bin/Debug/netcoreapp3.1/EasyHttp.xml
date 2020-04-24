@@ -1,0 +1,650 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyHttp</name>
+    </assembly>
+    <members>
+        <member name="F:EasyHttp.Bll.EasyHttpWebRequest._requestObject">
+            <summary>
+            请求参数对象
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Bll.EasyHttpWebRequest._request">
+            <summary>
+            请求对象
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Bll.EasyHttpWebRequest.SetCertificate(EasyHttp.RequestObject)">
+            <summary>
+            设置证书
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:EasyHttp.Bll.EasyHttpWebRequest.SetProxy(EasyHttp.RequestObject)">
+            <summary>
+            设置代理
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:EasyHttp.Bll.EasyHttpWebRequest.SetCookie(EasyHttp.RequestObject)">
+            <summary>
+            设置cookie
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:EasyHttp.Bll.EasyHttpWebRequest.SetPostData(EasyHttp.RequestObject)">
+            <summary>
+            设置post数据
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="F:EasyHttp.Bll.EasyHttpWebResponse._requestObject">
+            <summary>
+            请求参数对象
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Bll.EasyHttpWebResponse._response">
+            <summary>
+            相应对象
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Bll.EasyHttpWebResponse.#ctor(System.Net.HttpWebResponse,EasyHttp.RequestObject)">
+            <summary>
+            构造方式
+            </summary>
+            <param name="response"></param>
+            <param name="requestObject"></param>
+        </member>
+        <member name="M:EasyHttp.Bll.EasyHttpWebResponse.CreateResponse(System.Net.HttpWebResponse,EasyHttp.RequestObject)">
+            <summary>
+            创建相应对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Bll.EasyHttpWebResponse.GetByte">
+            <summary>
+            获取相应的内容的字节数组信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:EasyHttp.Def.MethodDef">
+            <summary>
+            请求方法(常用)
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.MethodDef.GET">
+            <summary>
+            向特定的资源发出请求。
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.MethodDef.POST">
+            <summary>
+            向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的创建和/或已有资源的修改。 
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.MethodDef.PUT">
+            <summary>
+            向指定资源位置上传其最新内容。
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.MethodDef.PATCH">
+            <summary>
+            与PUT方法类似，但PATCH方法通常应用于局部更新。
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.MethodDef.DELETE">
+            <summary>
+            请求服务器删除Request-URI所标识的资源。 
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Def.RegexDef">
+            <summary>
+            正则表达式
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.RegexDef.Enconding">
+            <summary>
+            提取编码
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.UserAgentDef.Maxthon">
+            <summary>
+            遨游浏览器
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.UserAgentDef.Sougou">
+            <summary>
+            搜狗浏览器
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.UserAgentDef.Qi360">
+            <summary>
+            360浏览器
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Def.UserAgentDef.Qq">
+            <summary>
+            QQ浏览器
+            </summary>
+        </member>
+        <member name="M:EasyHttp.EasyHtmlHelper.RemoveComment(System.String)">
+            <summary>
+            移除注释
+            </summary>
+            <param name="html">原始html</param>
+            <returns>新的html</returns>
+        </member>
+        <member name="M:EasyHttp.EasyHtmlHelper.RemoveStyle(System.String)">
+            <summary>
+            移除样式代码
+            </summary>
+            <param name="html">原始html</param>
+            <returns>新的html</returns>
+        </member>
+        <member name="M:EasyHttp.EasyHtmlHelper.RemoveScript(System.String)">
+            <summary>
+            移除脚本代码
+            </summary>
+            <param name="html">原始html</param>
+            <returns>新的html</returns>
+        </member>
+        <member name="T:EasyHttp.EasyRequest">
+            <summary>
+            http请求类
+            </summary>
+        </member>
+        <member name="M:EasyHttp.EasyRequest.CreateRequest(EasyHttp.RequestObject)">
+            <summary>
+            创建请求对象
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.EasyRequest.OnRemoteCertificateValidationCallback(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            忽略证书认证错误处理的函数
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="sslPolicyErrors"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EasyHttp.Enum.AType">
+            <summary>
+            A链类型
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.AType.Text">
+            <summary>
+            文本
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.AType.Img">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Enum.CookieType">
+            <summary>
+            cookie类型
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.CookieType.String">
+            <summary>
+            字符串
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.CookieType.CookieCollection">
+            <summary>
+            链表
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.CookieType.CookieContainer">
+            <summary>
+            容器
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Enum.PostDataType">
+            <summary>
+            post数据类型
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.PostDataType.String">
+            <summary>
+            字符串
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.PostDataType.Byte">
+            <summary>
+            字节数组
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Enum.PostDataType.FilePath">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Exceptions.EasyHttpException">
+            <summary>
+            EasyHttp异常
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Model.TagA">
+            <summary>
+            A标签
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.TagA.Href">
+            <summary>
+            连接地址
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.TagA.Text">
+            <summary>
+            文本
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.TagA.Img">
+            <summary>
+            图片（文本标签为空）
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.TagA.Type">
+            <summary>
+            标签类型
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Model.TagBase">
+            <summary>
+            标签基类
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.TagBase.Html">
+            <summary>
+            html
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.TagBase.Node">
+            <summary>
+            当前元素
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Model.TagImg">
+            <summary>
+            Img标签
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.TagImg.Src">
+            <summary>
+            图片url
+            </summary>
+        </member>
+        <member name="T:EasyHttp.RequestObject">
+            <summary>
+            请求信息
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Url">
+            <summary>
+            请求的地址
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.IPEndPoint">
+            <summary>
+            本地的请求ip和端口
+            </summary>
+        </member>
+        <member name="F:EasyHttp.RequestObject._automaticDecompression">
+            <summary>
+            自动解压缩方式
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.AutomaticDecompression">
+            <summary>
+            自动解压缩方式
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.CertificateList">
+            <summary>
+            证书链表
+            </summary>
+        </member>
+        <member name="F:EasyHttp.RequestObject._headers">
+            <summary>
+            请求头
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Headers">
+            <summary>
+            请求头
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ProxyIp">
+            <summary>
+            代理ip 格式192.168.1.1:9999
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ProxyUserName">
+            <summary>
+            代理用户名
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ProxyPassword">
+            <summary>
+            代理密码
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.WebProxy">
+            <summary>
+            自定义代理
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ProtocolVersion">
+            <summary>
+            用于请求的 HTTP 版本。 默认值为 Version11
+            使用 HttpVersion 类的 Version10 和 Version11 字段
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Expect100Continue">
+            <summary>
+            该值确定是否使用 100-Continue 行为。
+            如果 POST 请求需要 100-Continue 响应，则为 true；否则为 false。 默认值为 true。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Method">
+            <summary>
+            获取或设置请求的方法
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Timeout">
+            <summary>
+            获取或设置 System.Net.HttpWebRequest.GetResponse 和 System.Net.HttpWebRequest.GetRequestStream
+            方法的超时值（以毫秒为单位）。
+            请求超时前等待的毫秒数。默认值是 100,000 毫秒（100 秒）。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.KeepAlive">
+            <summary>
+            获取或设置一个值，该值指示是否与 Internet 资源建立持续型连接。
+            如果对 Internet 资源的请求所包含的 HTTP Connection 标头带有 Keep-alive 这一值，则为 true；否则为 false。
+            默认值为 true。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ReadWriteTimeout">
+            <summary>
+            获取或设置写入或读取流时的超时（以毫秒为单位）。
+            在写入超时或读取超时之前的毫秒数。默认值为 300,000 毫秒（5 分钟）。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Host">
+            <summary>
+            获取或设置要在 HTTP 请求中独立于请求 URI 使用的 Host 标头值。
+            HTTP 请求中的 Host 标头值。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.IfModifiedSince">
+            <summary>
+            获取或设置 If-Modified-Since HTTP 标头的值。
+            包含 HTTP If-Modified-Since 标头内容的 System.DateTime。 默认值是当前日期和时间。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Accept">
+            <summary>
+            获取或设置 Accept HTTP 标头的值。
+            Accept HTTP 标头的值。 
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ContentType">
+            <summary>
+            获取或设置 Content-type HTTP 标头的值。
+            Content-type HTTP 标头的值。 
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.UserAgent">
+            <summary>
+            用户代理
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Encoding">
+            <summary>
+            采用指定的编码解析数据（如果不设则根据相应数据来自动适配编码）
+            </summary>  
+        </member>
+        <member name="P:EasyHttp.RequestObject.PostEncoding">
+            <summary>
+            post编码
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ICredentials">
+            <summary>
+            获取或设置请求的身份验证信息。
+            包含与该请求关联的身份验证凭据的 System.Net.ICredentials。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.CookieType">
+            <summary>
+            cookie类型
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Cookie">
+            <summary>
+            字符串Cookie
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.CookieCollection">
+            <summary>
+            cookie链表
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.CookieContainer">
+            <summary>
+            cookie容器
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Referer">
+            <summary>
+            请求来源,比如是从百度跳转及为http://www.baidu.com 默认值为 null。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.AllowAutoRedirect">
+            <summary>
+            获取或设置一个值，该值指示请求是否应跟随重定向响应。
+            如果请求应自动遵循来自 Internet 资源的重定向响应，则为 true；否则为 false。 默认值为 true。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.MaximumAutomaticRedirections">
+            <summary>
+            获取或设置请求将跟随的重定向的最大数目。
+            请求将跟随的重定向响应的最大数目。 默认值为 50。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.PostDataType">
+            <summary>
+            post数据类型 默认string
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.PostdataByte">
+            <summary>
+            post byte字节数组
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.Postdata">
+            <summary>
+            post数据
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.ConnectionLimit">
+            <summary>
+            允许最大连接数
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.SecurityProtocol">
+            <summary>
+            获取或设置由 System.Net.ServicePointManager 对象管理的 System.Net.ServicePoint 对象所使用的安全协议。
+            </summary>
+        </member>
+        <member name="P:EasyHttp.RequestObject.IsUpdateCookie">
+            <summary>
+            是否更新cookie
+            </summary>
+        </member>
+        <member name="M:EasyHttp.RequestObject.SetCertificate(System.String,System.String)">
+            <summary>
+            设置证书
+            </summary>
+            <param name="path">证书路径</param>
+            <param name="password">密码</param>
+        </member>
+        <member name="M:EasyHttp.RequestObject.AddCertificate(System.String,System.String)">
+            <summary>
+            添加证书
+            </summary>
+            <param name="path">证书路径</param>
+            <param name="password">密码</param>
+        </member>
+        <member name="M:EasyHttp.RequestObject.AddCertificatePrivate(System.String,System.String)">
+            <summary>
+            添加证书
+            </summary>
+            <param name="path"></param>
+            <param name="password"></param>
+        </member>
+        <member name="T:EasyHttp.ResponseObject">
+            <summary>
+            相应对象
+            </summary>
+        </member>
+        <member name="F:EasyHttp.ResponseObject._requestObject">
+            <summary>
+            请求参数对象
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.RequestObject">
+            <summary>
+            请求参数对象
+            </summary>
+        </member>
+        <member name="F:EasyHttp.ResponseObject._encoding">
+            <summary>
+            数据编码
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.CharacterSet">
+            <summary>
+            文档字符编码
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.StatusCode">
+            <summary>
+            HTTP 状态代码的值
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.ResponseUri">
+            <summary>
+            相应url
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.StatusDescription">
+            <summary>
+            状态描述
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.Headers">
+            <summary>
+            相应头
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.CookieCollection">
+            <summary>
+            相应Cookies
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.Cookie">
+            <summary>
+            相应Cookie
+            </summary>
+        </member>
+        <member name="F:EasyHttp.ResponseObject._originalByteData">
+            <summary>
+            相应原始数据
+            </summary>
+        </member>
+        <member name="P:EasyHttp.ResponseObject.OriginalByteData">
+            <summary>
+            相应原始数据
+            </summary>
+        </member>
+        <member name="F:EasyHttp.ResponseObject._htmlOriginal">
+            <summary>
+            原始的html数据
+            </summary>
+        </member>
+        <member name="F:EasyHttp.ResponseObject._htmlSimple">
+            <summary>
+            简化后的html串
+            </summary>
+        </member>
+        <member name="M:EasyHttp.ResponseObject.SetEncoding(System.Byte[])">
+            <summary>
+            设定解析数据的编码
+            </summary>
+            <param name="ResponseByte">相应数据</param>
+        </member>
+        <member name="M:EasyHttp.ResponseObject.GetByteData">
+            <summary>
+            获取字节数组数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.ResponseObject.GetHtml">
+            <summary>
+            获取字符串数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.ResponseObject.GetHtmlSimple">
+            <summary>
+            获取简化字符串数据（去除注释、style、script）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.ResponseObject.GetTagById(System.String)">
+            <summary>
+            根据元素id获取标签
+            </summary>
+            <param name="id">id</param>
+            <returns>选择的标签</returns>
+        </member>
+        <member name="M:EasyHttp.ResponseObject.GetAllATag">
+            <summary>
+            获取所有A标签
+            </summary>
+            <returns>选择的元素</returns>
+        </member>
+        <member name="M:EasyHttp.ResponseObject.GetAllImgTag">
+            <summary>
+            获取所有img标签
+            </summary>
+            <returns>选择的元素</returns>
+        </member>
+        <member name="T:EasyHttp.Tool.Base64Helper">
+            <summary>
+            Base64帮助类
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Tool.Base64Helper.EncodeBase64(System.String,System.Text.Encoding)">
+            <summary>
+            将字符串编码为base64
+            </summary>
+            <param name="source">原始字符串</param>
+            <param name="encoding">字符编码</param>
+            <returns></returns>
+        </member>
+        <member name="T:EasyHttp.Tool.LocationHelper">
+            <summary>
+            位置帮助类
+            </summary>
+        </member>
+    </members>
+</doc>

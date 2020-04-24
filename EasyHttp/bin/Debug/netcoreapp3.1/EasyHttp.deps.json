@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "EasyHttp/1.0.0": {
+        "dependencies": {
+          "HtmlAgilityPack": "1.11.17.0"
+        },
+        "runtime": {
+          "EasyHttp.dll": {}
+        }
+      },
+      "HtmlAgilityPack/1.11.17.0": {
+        "runtime": {
+          "HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.11.17.0",
+            "fileVersion": "1.11.17.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EasyHttp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HtmlAgilityPack/1.11.17.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
