@@ -7,3 +7,4 @@ C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.Prop
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.csproj.GenerateResource.cache
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.exe
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.pdb
+C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.csproj.CoreCompileInputs.cache

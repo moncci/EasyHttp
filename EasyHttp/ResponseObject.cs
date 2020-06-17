@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using EasyHttp.Tool;
 
 namespace EasyHttp
 {
@@ -206,44 +207,9 @@ namespace EasyHttp
         /// </summary>
         /// <param name="id">id</param>
         /// <returns>选择的标签</returns>
-        public List<TagBase> GetTagById(string id)
+        public TagBase GetTagById(string id)
         {
-            List<HtmlNode> selectNodeList = new List<HtmlNode>();
-            List<TagBase> selectElementList = null;
-            if (_htmlSimple != null)
-            {
-                HtmlDocument htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(_htmlSimple);
-                if (htmlDoc == null)
-                {
-                    return null;
-                }
-                HtmlNode[] list = htmlDoc.DocumentNode.Descendants().ToArray();
-                if (list != null && list.Length > 0)
-                {
-                    foreach (HtmlNode node in list)
-                    {
-                        if (node.Id == id)
-                        {
-                            selectNodeList.Add(node);
-                        }
-                    }
-                }
-
-                if (selectNodeList != null && selectNodeList.Count > 0)
-                {
-                    selectElementList = new List<TagBase>();
-                    foreach (HtmlNode node in selectNodeList)
-                    {
-                        TagBase tag = new TagBase();
-                        tag.Node = node;
-                        tag.Html = node.OuterHtml;
-                        selectElementList.Add(tag);
-                    }
-                }
-            }
-
-            return selectElementList;
+            return _htmlSimple.GetTagById<TagBase>(id);            
         }
         #endregion
 
@@ -254,56 +220,7 @@ namespace EasyHttp
         /// <returns>选择的元素</returns>
         public List<TagA> GetAllATag()
         {
-            List<HtmlNode> selectNodeList = new List<HtmlNode>();
-            List<TagA> selectElementList = null;
-            if (_htmlSimple != null)
-            {
-                HtmlDocument htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(_htmlSimple);
-                if (htmlDoc == null)
-                {
-                    return null;
-                }
-                HtmlNode[] list = htmlDoc.DocumentNode.Descendants("a").ToArray();
-                if (list != null && list.Length > 0)
-                {
-                    foreach (HtmlNode node in list)
-                    {
-                        selectNodeList.Add(node);
-                    }
-                }
-
-                if (selectNodeList != null && selectNodeList.Count > 0)
-                {
-                    selectElementList = new List<TagA>();
-                    foreach (HtmlNode node in selectNodeList)
-                    {
-                        TagA tag = new TagA();
-                        tag.Node = node;
-                        tag.Html = node.OuterHtml;
-                        tag.Href = node.GetAttributeValue("href", "");
-                        HtmlNode[] listImg = node.Descendants("img").ToArray();
-                        if (listImg != null && listImg.Length > 0)
-                        {
-                            tag.Type = Enum.AType.Img;
-                            TagImg img = new TagImg();
-                            img.Node = listImg[0];
-                            img.Html = listImg[0].OuterHtml;
-                            img.Src = listImg[0].GetAttributeValue("src", "");
-
-                            tag.Img = img;
-                        }
-                        else
-                        {
-                            tag.Type = Enum.AType.Text;
-                            tag.Text = node.InnerText;
-                        }
-                        selectElementList.Add(tag);
-                    }
-                }
-            }                
-
-            return selectElementList;
+            return _htmlSimple.GetTagListByTagName<TagA>(TagType.a);            
         }
         #endregion
 
@@ -314,41 +231,7 @@ namespace EasyHttp
         /// <returns>选择的元素</returns>
         public List<TagImg> GetAllImgTag()
         {
-            List<HtmlNode> selectNodeList = new List<HtmlNode>();
-            List<TagImg> selectTagList = null;
-            if (_htmlSimple != null)
-            {
-                HtmlDocument htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(_htmlSimple);
-                if (htmlDoc == null)
-                {
-                    return null;
-                }
-                HtmlNode[] list = htmlDoc.DocumentNode.Descendants("img").ToArray();
-                if (list != null && list.Length > 0)
-                {
-                    foreach (HtmlNode node in list)
-                    {
-                        selectNodeList.Add(node);
-                    }
-                }
-
-                if (selectNodeList != null && selectNodeList.Count > 0)
-                {
-                    selectTagList = new List<TagImg>();
-                    foreach (HtmlNode node in selectNodeList)
-                    {
-                        TagImg tag = new TagImg();
-                        tag.Node = node;
-                        tag.Html = node.OuterHtml;
-                        tag.Src = node.GetAttributeValue("src", "");
-                        selectTagList.Add(tag);
-                    }
-                }
-            }
-
-           
-            return selectTagList;
+            return _htmlSimple.GetTagListByTagName<TagImg>(TagType.img);            
         }
         #endregion
         

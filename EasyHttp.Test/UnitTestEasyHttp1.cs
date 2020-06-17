@@ -1,8 +1,10 @@
 using EasyHttp.Def;
 using EasyHttp.Model;
+using EasyHttp.Tool;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -55,13 +57,10 @@ namespace EasyHttp.Test
 
             EasyRequest request = new EasyRequest();
             ResponseObject result = request.GetResponse(reqObj);
-            List<TagBase> listElemnet = result.GetTagById("demo_newsFocus");
-            if (listElemnet != null)
+            TagBase elemnet = result.GetTagById("demo_newsFocus");
+            if (elemnet != null)
             {
-                foreach (var item in listElemnet)
-                {
-                    Console.WriteLine(item.Html);
-                }
+                Console.WriteLine(elemnet.Html);
             }
         }
 
@@ -146,5 +145,26 @@ namespace EasyHttp.Test
             Match mc = Regex.Match(text, pattern); //满足pattern的匹配集合
             string userid = mc.Groups["userid"].Value;
         }
+
+
+        [TestMethod]
+        public void TestPost()
+        {
+            RequestObject reqObj = new RequestObject();
+            reqObj.Url = "https://localhost:44374/Home/GetUserInfo";
+            List<FormItemModel> list = new List<FormItemModel>();
+            list.Add(new FormItemModel() { Key = "username", Value = "张三" });
+            list.Add(new FormItemModel() { Key = "password", Value = "李四" });
+            var data = PostHelper.GetFileContent(@"C:\File\model.pdf");
+            list.Add(new FormItemModel() { Key = "file", FileName= "model.pdf", FileContent= data });
+            reqObj = PostHelper.PostFormFile(reqObj, list);
+            
+
+            EasyRequest request = new EasyRequest();
+            ResponseObject result = request.GetResponse(reqObj);
+            string html = result.GetHtmlSimple();
+        }
+
+        
     }
 }

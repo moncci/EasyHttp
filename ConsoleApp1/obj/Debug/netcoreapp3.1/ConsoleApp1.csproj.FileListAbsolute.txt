@@ -16,3 +16,5 @@ C:\File\cd_work\github\EasyHttp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.
 C:\File\cd_work\github\EasyHttp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.CopyComplete
 C:\File\cd_work\github\EasyHttp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.dll
 C:\File\cd_work\github\EasyHttp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.pdb
+C:\File\cd_work\github\EasyHttp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\File\cd_work\github\EasyHttp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.genruntimeconfig.cache
