@@ -5,6 +5,6 @@ C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.cspr
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.Form1.resources
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.Properties.Resources.resources
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.csproj.GenerateResource.cache
+C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.csproj.CoreCompileInputs.cache
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.exe
 C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.pdb
-C:\File\cd_work\github\EasyHttp\WindowsFormsTest\obj\Debug\WindowsFormsTest.csproj.CoreCompileInputs.cache
