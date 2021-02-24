@@ -137,7 +137,7 @@ namespace EasyHttp
         /// <summary>
         /// post编码
         /// </summary>
-        public Encoding PostEncoding { get; set; }
+        public Encoding PostEncoding { get; set; } = Encoding.Default;
         /// <summary>
         /// 获取或设置请求的身份验证信息。
         /// 包含与该请求关联的身份验证凭据的 System.Net.ICredentials。
@@ -176,15 +176,19 @@ namespace EasyHttp
         /// <summary>
         /// post数据类型 默认string
         /// </summary>
-        public PostDataType PostDataType { get; set; } = PostDataType.String;
+        //public PostDataType PostDataType { get; set; } = PostDataType.String;
         /// <summary>
         /// post byte字节数组
         /// </summary>
-        public byte[] PostdataByte { get; set; }
+        //public byte[] PostdataByte { get; set; }
         /// <summary>
         /// post数据
         /// </summary>
-        public string Postdata { get; set; }
+        //public string Postdata { get; set; }
+        /// <summary>
+        /// 请求负载
+        /// </summary>
+        public byte[] Payload { get; private set; }
         /// <summary>
         /// 允许最大连接数
         /// </summary>
@@ -216,6 +220,48 @@ namespace EasyHttp
         public void AddCertificate(string path, string password = "")
         {
             AddCertificatePrivate(path, password);
+        }
+
+        /// <summary>
+        /// 设置请求负载
+        /// </summary>
+        /// <param name="value">请求内容</param>
+        public void SetPayload(string value)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                Payload = PostEncoding.GetBytes(value);
+            }
+        }
+
+        /// <summary>
+        /// 设置请求负载
+        /// </summary>
+        /// <param name="value">请求内容</param>
+        public void SetPayload(byte[] value)
+        {
+            if (value != null && value.Length > 0)
+            {
+                Payload = value;
+            }
+        }
+
+        /// <summary>
+        /// 设置请求负载
+        /// </summary>
+        /// <param name="value">请求内容</param>
+        public void SetPayloadFilePath(string filePath)
+        {
+            if (!string.IsNullOrWhiteSpace(filePath))
+            {
+                if (File.Exists(filePath))
+                {
+                    using (StreamReader streamReader = new StreamReader(filePath, PostEncoding))
+                    {
+                        Payload = PostEncoding.GetBytes(streamReader.ReadToEnd());
+                    }
+                }
+            }
         }
 
 

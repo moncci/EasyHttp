@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="EasyHttp">
-      <HintPath>..\..\..\..\demo\General.Xcky.Connector\Lib\EasyHttp.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
+    <ProjectReference Include="..\EasyHttp\EasyHttp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="HtmlAgilityPack">
-      <HintPath>..\..\..\..\demo\General.Xcky.Connector\Lib\HtmlAgilityPack.dll</HintPath>
+      <HintPath>..\Lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
   </ItemGroup>
 

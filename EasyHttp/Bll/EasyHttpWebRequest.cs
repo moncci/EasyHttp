@@ -185,41 +185,50 @@ namespace EasyHttp.Bll
         /// <param name="obj"></param>
         private void SetPostData(RequestObject obj)
         {
-            if (_request.Method.Trim().ToLower() != "get")
+            if (obj.Payload != null)
             {
-                if (obj.PostEncoding != null)
-                {
-                    _postEncoding = obj.PostEncoding;
-                }
-                byte[] array = null;
-                if (obj.PostDataType == PostDataType.Byte && obj.PostdataByte != null && obj.PostdataByte.Length != 0)
-                {
-                    array = obj.PostdataByte;
-                }
-                else
-                {
-                    if (obj.PostDataType == PostDataType.FilePath && !string.IsNullOrWhiteSpace(obj.Postdata))
-                    {
-                        StreamReader streamReader = new StreamReader(obj.Postdata, _postEncoding);
-                        array = _postEncoding.GetBytes(streamReader.ReadToEnd());
-                        streamReader.Close();
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrWhiteSpace(obj.Postdata))
-                        {
-                            array = _postEncoding.GetBytes(obj.Postdata);
-                        }
-                    }
-                }
-                if (array != null)
-                {
-                    _request.ContentLength = (long)array.Length;
-                    _request.GetRequestStream().Write(array, 0, array.Length);
-                    return;
-                }
+                _request.ContentLength = (long)obj.Payload.Length;
+                _request.GetRequestStream().Write(obj.Payload, 0, obj.Payload.Length);
+            }
+            else
+            {
                 _request.ContentLength = 0L;
             }
+            //if (_request.Method.Trim().ToLower() != "get")
+            //{
+            //    if (obj.PostEncoding != null)
+            //    {
+            //        _postEncoding = obj.PostEncoding;
+            //    }
+            //    byte[] array = null;
+            //    if (obj.PostDataType == PostDataType.Byte && obj.PostdataByte != null && obj.PostdataByte.Length != 0)
+            //    {
+            //        array = obj.PostdataByte;
+            //    }
+            //    else
+            //    {
+            //        if (obj.PostDataType == PostDataType.FilePath && !string.IsNullOrWhiteSpace(obj.Postdata))
+            //        {
+            //            StreamReader streamReader = new StreamReader(obj.Postdata, _postEncoding);
+            //            array = _postEncoding.GetBytes(streamReader.ReadToEnd());
+            //            streamReader.Close();
+            //        }
+            //        else
+            //        {
+            //            if (!string.IsNullOrWhiteSpace(obj.Postdata))
+            //            {
+            //                array = _postEncoding.GetBytes(obj.Postdata);
+            //            }
+            //        }
+            //    }
+            //    if (array != null)
+            //    {
+            //        _request.ContentLength = (long)array.Length;
+            //        _request.GetRequestStream().Write(array, 0, array.Length);
+            //        return;
+            //    }
+            //    _request.ContentLength = 0L;
+            //}
         }
     }
 }

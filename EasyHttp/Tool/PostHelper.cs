@@ -83,8 +83,8 @@ namespace EasyHttp.Tool
                 //结尾
                 var footer = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--\r\n");
                 postStream.Write(footer, 0, footer.Length);
-                reqObj.PostDataType = Enum.PostDataType.Byte;
-                reqObj.PostdataByte = postStream.ToArray();
+                //reqObj.PostDataType = Enum.PostDataType.Byte;
+                reqObj.SetPayload(postStream.ToArray());
 
             }
             else
