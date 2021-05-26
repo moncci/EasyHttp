@@ -14,16 +14,16 @@ using System.Web;
 
 namespace EasyHttp.Tool
 {
-    public class JTool
+    internal class EhTool
     {
         private static Regex RegexBr = new Regex("(\\r\\n)", RegexOptions.IgnoreCase);
-        public static Regex RegexFont = new Regex("<font color=\".*?\">([\\s\\S]+?)</font>", JTool.GetRegexCompiledOptions());
+        public static Regex RegexFont = new Regex("<font color=\".*?\">([\\s\\S]+?)</font>", GetRegexCompiledOptions());
 
         /// <summary>
         /// 程序集文件版本
         /// </summary>
         private static FileVersionInfo AssemblyFileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-        private static string TemplateCookieName = string.Format("dnttemplateid_{0}_{1}_{2}", JTool.AssemblyFileVersion.FileMajorPart, JTool.AssemblyFileVersion.FileMinorPart, JTool.AssemblyFileVersion.FileBuildPart);
+        private static string TemplateCookieName = string.Format("dnttemplateid_{0}_{1}_{2}", AssemblyFileVersion.FileMajorPart, AssemblyFileVersion.FileMinorPart, AssemblyFileVersion.FileBuildPart);
         /// <summary>
         /// 根据阿拉伯数字返回月份的名称(可更改为某种语言)
         /// </summary>	
@@ -66,12 +66,12 @@ namespace EasyHttp.Tool
         }
         public static bool IsCompriseStr(string str, string stringarray, string strsplit)
         {
-            if (JTool.StrIsNullOrEmpty(stringarray))
+            if (StrIsNullOrEmpty(stringarray))
             {
                 return false;
             }
             str = str.ToLower();
-            string[] array = JTool.SplitString(stringarray.ToLower(), strsplit);
+            string[] array = SplitString(stringarray.ToLower(), strsplit);
             for (int i = 0; i < array.Length; i++)
             {
                 if (str.IndexOf(array[i]) > -1)
@@ -117,7 +117,7 @@ namespace EasyHttp.Tool
         /// <returns>字符串在指定字符串数组中的位置, 如不存在则返回-1</returns>		
         public static int GetInArrayID(string strSearch, string[] stringArray)
         {
-            return JTool.GetInArrayID(strSearch, stringArray, true);
+            return GetInArrayID(strSearch, stringArray, true);
         }
         /// <summary>
         /// 判断指定字符串是否属于指定字符串数组中的一个元素
@@ -128,7 +128,7 @@ namespace EasyHttp.Tool
         /// <returns>判断结果</returns>
         public static bool InArray(string strSearch, string[] stringArray, bool caseInsensetive)
         {
-            return JTool.GetInArrayID(strSearch, stringArray, caseInsensetive) >= 0;
+            return GetInArrayID(strSearch, stringArray, caseInsensetive) >= 0;
         }
         /// <summary>
         /// 判断指定字符串是否属于指定字符串数组中的一个元素
@@ -138,7 +138,7 @@ namespace EasyHttp.Tool
         /// <returns>判断结果</returns>
         public static bool InArray(string str, string[] stringarray)
         {
-            return JTool.InArray(str, stringarray, false);
+            return InArray(str, stringarray, false);
         }
         /// <summary>
         /// 判断指定字符串是否属于指定字符串数组中的一个元素
@@ -148,7 +148,7 @@ namespace EasyHttp.Tool
         /// <returns>判断结果</returns>
         public static bool InArray(string str, string stringarray)
         {
-            return JTool.InArray(str, JTool.SplitString(stringarray, ","), false);
+            return InArray(str, SplitString(stringarray, ","), false);
         }
         /// <summary>
         /// 判断指定字符串是否属于指定字符串数组中的一个元素
@@ -159,7 +159,7 @@ namespace EasyHttp.Tool
         /// <returns>判断结果</returns>
         public static bool InArray(string str, string stringarray, string strsplit)
         {
-            return JTool.InArray(str, JTool.SplitString(stringarray, strsplit), false);
+            return InArray(str, SplitString(stringarray, strsplit), false);
         }
         /// <summary>
         /// 判断指定字符串是否属于指定字符串数组中的一个元素
@@ -171,7 +171,7 @@ namespace EasyHttp.Tool
         /// <returns>判断结果</returns>
         public static bool InArray(string str, string stringarray, string strsplit, bool caseInsensetive)
         {
-            return JTool.InArray(str, JTool.SplitString(stringarray, strsplit), caseInsensetive);
+            return InArray(str, SplitString(stringarray, strsplit), caseInsensetive);
         }
         /// <summary>
         /// 删除字符串尾部的回车/换行/空格
@@ -196,7 +196,7 @@ namespace EasyHttp.Tool
         /// <returns>清除后返回的字符串</returns>
         public static string ClearBR(string str)
         {
-            Match match = JTool.RegexBr.Match(str);
+            Match match = RegexBr.Match(str);
             while (match.Success)
             {
                 str = str.Replace(match.Groups[0].ToString(), "");
@@ -260,7 +260,7 @@ namespace EasyHttp.Tool
         /// <returns>子字符串</returns>
         public static string CutString(string str, int startIndex)
         {
-            return JTool.CutString(str, startIndex, str.Length);
+            return CutString(str, startIndex, str.Length);
         }
         /// <summary>
         /// 获得当前绝对路径--从跟节点找即 ~/
@@ -450,7 +450,7 @@ namespace EasyHttp.Tool
         /// <returns>截取后的字符串</returns>
         public static string GetSubString(string p_SrcString, int p_Length, string p_TailString)
         {
-            return JTool.GetSubString(p_SrcString, 0, p_Length, p_TailString);
+            return GetSubString(p_SrcString, 0, p_Length, p_TailString);
         }
         public static string GetUnicodeSubString(string str, int len, string p_TailString)
         {
@@ -761,11 +761,11 @@ namespace EasyHttp.Tool
         }
         public static string GetStandardDateTime(string fDateTime)
         {
-            return JTool.GetStandardDateTime(fDateTime, "yyyy-MM-dd HH:mm:ss");
+            return GetStandardDateTime(fDateTime, "yyyy-MM-dd HH:mm:ss");
         }
         public static string GetStandardDate(string fDate)
         {
-            return JTool.GetStandardDateTime(fDate, "yyyy-MM-dd");
+            return GetStandardDateTime(fDate, "yyyy-MM-dd");
         }
         /// <summary>
         ///
@@ -842,7 +842,7 @@ namespace EasyHttp.Tool
         /// </summary>
         public static string[] SplitString(string strContent, string strSplit)
         {
-            if (JTool.StrIsNullOrEmpty(strContent))
+            if (StrIsNullOrEmpty(strContent))
             {
                 return new string[0];
             }
@@ -862,7 +862,7 @@ namespace EasyHttp.Tool
         public static string[] SplitString(string strContent, string strSplit, int count)
         {
             string[] array = new string[count];
-            string[] array2 = JTool.SplitString(strContent, strSplit);
+            string[] array2 = SplitString(strContent, strSplit);
             for (int i = 0; i < count; i++)
             {
                 if (i < array2.Length)
@@ -933,21 +933,21 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string[] SplitString(string strContent, string strSplit, bool ignoreRepeatItem, int maxElementLength)
         {
-            string[] array = JTool.SplitString(strContent, strSplit);
+            string[] array = SplitString(strContent, strSplit);
             if (!ignoreRepeatItem)
             {
                 return array;
             }
-            return JTool.DistinctStringArray(array, maxElementLength);
+            return DistinctStringArray(array, maxElementLength);
         }
         public static string[] SplitString(string strContent, string strSplit, bool ignoreRepeatItem, int minElementLength, int maxElementLength)
         {
-            string[] strArray = JTool.SplitString(strContent, strSplit);
+            string[] strArray = SplitString(strContent, strSplit);
             if (ignoreRepeatItem)
             {
-                strArray = JTool.DistinctStringArray(strArray);
+                strArray = DistinctStringArray(strArray);
             }
-            return JTool.PadStringArray(strArray, minElementLength, maxElementLength);
+            return PadStringArray(strArray, minElementLength, maxElementLength);
         }
         /// <summary>
         /// 分割字符串
@@ -958,7 +958,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string[] SplitString(string strContent, string strSplit, bool ignoreRepeatItem)
         {
-            return JTool.SplitString(strContent, strSplit, ignoreRepeatItem, 0);
+            return SplitString(strContent, strSplit, ignoreRepeatItem, 0);
         }
         /// <summary>
         /// 清除字符串数组中的重复项
@@ -990,7 +990,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string[] DistinctStringArray(string[] strArray)
         {
-            return JTool.DistinctStringArray(strArray, 0);
+            return DistinctStringArray(strArray, 0);
         }
         /// <summary>
         /// 替换html字符
@@ -1011,7 +1011,7 @@ namespace EasyHttp.Tool
         /// </summary>
         public static string StrFilter(string str, string bantext)
         {
-            string[] array = JTool.SplitString(bantext, "\r\n");
+            string[] array = SplitString(bantext, "\r\n");
             for (int i = 0; i < array.Length; i++)
             {
                 string oldValue = array[i].Substring(0, array[i].IndexOf("="));
@@ -1030,7 +1030,7 @@ namespace EasyHttp.Tool
         /// <returns>页码html</returns>
         public static string GetStaticPageNumbers(int curPage, int countPage, string url, string expname, int extendPage)
         {
-            return JTool.GetStaticPageNumbers(curPage, countPage, url, expname, extendPage, 0);
+            return GetStaticPageNumbers(curPage, countPage, url, expname, extendPage, 0);
         }
         /// <summary>
         /// 获得伪静态页码显示链接
@@ -1280,7 +1280,7 @@ namespace EasyHttp.Tool
         /// <returns>页码html</returns>
         public static string GetPageNumbers(int curPage, int countPage, string url, int extendPage)
         {
-            return JTool.GetPageNumbers(curPage, countPage, url, extendPage, "page");
+            return GetPageNumbers(curPage, countPage, url, extendPage, "page");
         }
         /// <summary>
         /// 获得页码显示链接
@@ -1293,7 +1293,7 @@ namespace EasyHttp.Tool
         /// <returns>页码html</returns>
         public static string GetPageNumbers(int curPage, int countPage, string url, int extendPage, string pagetag)
         {
-            return JTool.GetPageNumbers(curPage, countPage, url, extendPage, pagetag, null);
+            return GetPageNumbers(curPage, countPage, url, extendPage, pagetag, null);
         }
         /// <summary>
         /// 获得页码显示链接
@@ -1462,7 +1462,7 @@ namespace EasyHttp.Tool
                 if (files[i].Extension.ToLower().Equals(".htm"))
                 {
                     FileStream fileStream = new FileStream(files[i].FullName, FileMode.Open, FileAccess.Read);
-                    bool flag = JTool.IsUTF8(fileStream);
+                    bool flag = IsUTF8(fileStream);
                     fileStream.Close();
                     if (!flag)
                     {
@@ -1471,7 +1471,7 @@ namespace EasyHttp.Tool
                     }
                 }
             }
-            return JTool.SplitString(stringBuilder.ToString(), "\r\n");
+            return SplitString(stringBuilder.ToString(), "\r\n");
         }
         /// <summary>
         /// 判断文件流是否为UTF8字符集
@@ -1553,7 +1553,7 @@ namespace EasyHttp.Tool
                 return 0;
             }
             string text = objNum.ToString();
-            if (!JTool.IsNumeric(text))
+            if (!IsNumeric(text))
             {
                 return 0;
             }
@@ -1594,7 +1594,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static int StrDateDiffMinutes(string time, int minutes)
         {
-            if (JTool.StrIsNullOrEmpty(time))
+            if (StrIsNullOrEmpty(time))
             {
                 return 1;
             }
@@ -1617,7 +1617,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static int StrDateDiffHours(string time, int hours)
         {
-            if (JTool.StrIsNullOrEmpty(time))
+            if (StrIsNullOrEmpty(time))
             {
                 return 1;
             }
@@ -1671,10 +1671,10 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static bool InIPArray(string ip, string[] iparray)
         {
-            string[] array = JTool.SplitString(ip, ".");
+            string[] array = SplitString(ip, ".");
             for (int i = 0; i < iparray.Length; i++)
             {
-                string[] array2 = JTool.SplitString(iparray[i], ".");
+                string[] array2 = SplitString(iparray[i], ".");
                 int num = 0;
                 for (int j = 0; j < array2.Length; j++)
                 {
@@ -1701,7 +1701,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string GetAssemblyVersion()
         {
-            return string.Format("{0}.{1}.{2}", JTool.AssemblyFileVersion.FileMajorPart, JTool.AssemblyFileVersion.FileMinorPart, JTool.AssemblyFileVersion.FileBuildPart);
+            return string.Format("{0}.{1}.{2}", AssemblyFileVersion.FileMajorPart, AssemblyFileVersion.FileMinorPart, AssemblyFileVersion.FileBuildPart);
         }
         /// <summary>
         /// 获得Assembly产品名称
@@ -1709,7 +1709,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string GetAssemblyProductName()
         {
-            return JTool.AssemblyFileVersion.ProductName;
+            return AssemblyFileVersion.ProductName;
         }
         /// <summary>
         /// 获得Assembly产品版权
@@ -1717,7 +1717,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string GetAssemblyCopyright()
         {
-            return JTool.AssemblyFileVersion.LegalCopyright;
+            return AssemblyFileVersion.LegalCopyright;
         }
         ///// <summary>
         ///// 创建目录
@@ -1852,7 +1852,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string RemoveFontTag(string title)
         {
-            Match match = JTool.RegexFont.Match(title);
+            Match match = RegexFont.Match(title);
             if (match.Success)
             {
                 return match.Groups[1].Value;
@@ -1890,7 +1890,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的bool类型结果</returns>
         public static bool StrToBool(object expression, bool defValue)
         {
-            return JToolConvert.ObjectToBool(expression, defValue);
+            return EhConvert.ObjectToBool(expression, defValue);
         }
         /// <summary>
         /// string型转换为bool型
@@ -1900,7 +1900,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的bool类型结果</returns>
         public static bool StrToBool(string expression, bool defValue)
         {
-            return JToolConvert.StrToBool(expression, defValue);
+            return EhConvert.StrToBool(expression, defValue);
         }
         /// <summary>
         /// 将对象转换为Int32类型
@@ -1910,7 +1910,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static int ObjectToInt(object expression, int defValue)
         {
-            return JToolConvert.ObjectToInt(expression, defValue);
+            return EhConvert.ObjectToInt(expression, defValue);
         }
         /// <summary>
         /// 将字符串转换为Int32类型
@@ -1920,7 +1920,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static int StrToInt(string expression, int defValue)
         {
-            return JToolConvert.StrToInt(expression, defValue);
+            return EhConvert.StrToInt(expression, defValue);
         }
         /// <summary>
         /// 将对象转换为Int32类型
@@ -1930,7 +1930,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static int? ObjectToNullabelInt(object expression)
         {
-            return JToolConvert.ObjectToNullabelInt(expression);
+            return EhConvert.ObjectToNullabelInt(expression);
         }
         /// <summary>
         /// 将对象转换为Int32类型
@@ -1940,7 +1940,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static int? StrToNullabelInt(string expression)
         {
-            return JToolConvert.StrToNullabelInt(expression);
+            return EhConvert.StrToNullabelInt(expression);
         }
         /// <summary>
         /// Object型转换为float型
@@ -1950,7 +1950,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static float ObjectToFloat(object strValue, float defValue)
         {
-            return JToolConvert.ObjectToFloat(strValue, defValue);
+            return EhConvert.ObjectToFloat(strValue, defValue);
         }
         /// <summary>
         /// string型转换为float型
@@ -1960,7 +1960,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static float StrToFloat(string strValue, float defValue)
         {
-            return JToolConvert.StrToFloat(strValue, defValue);
+            return EhConvert.StrToFloat(strValue, defValue);
         }
         /// <summary>
         /// 判断给定的字符串数组(strNumber)中的数据是不是都为数值型
@@ -1991,7 +1991,7 @@ namespace EasyHttp.Tool
             {
                 try
                 {
-                    string[] array = JTool.SplitString(dictionaryEntry.Value.ToString(), "\r\n");
+                    string[] array = SplitString(dictionaryEntry.Value.ToString(), "\r\n");
                     string[] array2 = array;
                     for (int i = 0; i < array2.Length; i++)
                     {
@@ -2009,7 +2009,7 @@ namespace EasyHttp.Tool
                                         {
                                             '-'
                                         });
-                                        if (!JTool.IsTime(array3[1].ToString()) || !JTool.IsTime(array3[0].ToString()))
+                                        if (!IsTime(array3[1].ToString()) || !IsTime(array3[0].ToString()))
                                         {
                                             throw new Exception();
                                         }
@@ -2017,7 +2017,7 @@ namespace EasyHttp.Tool
                                 }
                                 else
                                 {
-                                    if (!JTool.IsIPSect(text.ToString()))
+                                    if (!IsIPSect(text.ToString()))
                                     {
                                         throw new Exception();
                                     }
@@ -2025,7 +2025,7 @@ namespace EasyHttp.Tool
                             }
                             else
                             {
-                                if (!JTool.IsValidDoEmail(text.ToString()))
+                                if (!IsValidDoEmail(text.ToString()))
                                 {
                                     throw new Exception();
                                 }
@@ -2091,7 +2091,7 @@ namespace EasyHttp.Tool
         /// <returns>操作是否成功</returns>
         public static bool BackupFile(string sourceFileName, string destFileName)
         {
-            return JTool.BackupFile(sourceFileName, destFileName, true);
+            return BackupFile(sourceFileName, destFileName, true);
         }
         /// <summary>
         /// 恢复文件
@@ -2127,7 +2127,7 @@ namespace EasyHttp.Tool
         }
         public static bool RestoreFile(string backupFileName, string targetFileName)
         {
-            return JTool.RestoreFile(backupFileName, targetFileName, null);
+            return RestoreFile(backupFileName, targetFileName, null);
         }
         /// <summary>
         /// 获取记录模板id的cookie名称
@@ -2135,7 +2135,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string GetTemplateCookieName()
         {
-            return JTool.TemplateCookieName;
+            return TemplateCookieName;
         }
         /// <summary>
         /// 将全角数字转换为数字
@@ -2203,8 +2203,8 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static string ConvertSimpleFileName(string fullname, string repstring, int leftnum, int rightnum, int charnum)
         {
-            string fileExtName = JTool.GetFileExtName(fullname);
-            if (JTool.StrIsNullOrEmpty(fileExtName))
+            string fileExtName = GetFileExtName(fullname);
+            if (StrIsNullOrEmpty(fileExtName))
             {
                 throw new Exception("字符串不含有扩展名信息");
             }
@@ -2245,7 +2245,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static StringBuilder DataTableToJSON(DataTable dt)
         {
-            return JTool.DataTableToJson(dt, true);
+            return DataTableToJson(dt, true);
         }
         /// <summary>
         /// 将数据表转换成JSON类型串
@@ -2350,7 +2350,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static bool IsNumericList(string numList)
         {
-            return !JTool.StrIsNullOrEmpty(numList) && JTool.IsNumericArray(numList.Split(new char[]
+            return !StrIsNullOrEmpty(numList) && IsNumericArray(numList.Split(new char[]
             {
                 ','
             }));
@@ -2362,7 +2362,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static bool CheckColorValue(string color)
         {
-            if (JTool.StrIsNullOrEmpty(color))
+            if (StrIsNullOrEmpty(color))
             {
                 return false;
             }
@@ -2503,7 +2503,7 @@ namespace EasyHttp.Tool
         /// <returns>合并到的目的字符串</returns>
         public static string MergeString(string source, string target)
         {
-            return JTool.MergeString(source, target, ",");
+            return MergeString(source, target, ",");
         }
         /// <summary>
         /// 合并字符
@@ -2514,7 +2514,7 @@ namespace EasyHttp.Tool
         /// <returns>并到字符串</returns>
         public static string MergeString(string source, string target, string mergechar)
         {
-            if (JTool.StrIsNullOrEmpty(target))
+            if (StrIsNullOrEmpty(target))
             {
                 target = source;
             }
@@ -2555,7 +2555,7 @@ namespace EasyHttp.Tool
         /// <returns>扩展名</returns>
         public static string GetFileExtName(string fileName)
         {
-            if (JTool.StrIsNullOrEmpty(fileName) || fileName.IndexOf('.') <= 0)
+            if (StrIsNullOrEmpty(fileName) || fileName.IndexOf('.') <= 0)
             {
                 return "";
             }
@@ -2564,7 +2564,7 @@ namespace EasyHttp.Tool
         }
         public static string GetHttpWebResponse(string url)
         {
-            return JTool.GetHttpWebResponse(url, string.Empty);
+            return GetHttpWebResponse(url, string.Empty);
         }
         /// <summary>
         /// http POST请求url

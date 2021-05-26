@@ -10,7 +10,7 @@ namespace EasyHttp.Tool
     /// <summary>
     /// 转换工具
     /// </summary>
-    public class JToolConvert
+    internal class EhConvert
     {
         /// <summary>
         /// 返回字符串
@@ -41,13 +41,13 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static int GetNoNullInt(object obj, int defaultValue)
         {
-            return JToolConvert.ObjectToInt(obj, defaultValue);
+            return ObjectToInt(obj, defaultValue);
         }
         public static int GetNoNullInt32(object obj)
         {
             if (obj != null)
             {
-                return JToolConvert.GetNoNullInt(obj, 0);
+                return GetNoNullInt(obj, 0);
             }
             return 0;
         }
@@ -56,17 +56,17 @@ namespace EasyHttp.Tool
         {
             if (obj != null)
             {
-                return JToolConvert.ObjectToLong(obj, 0);
+                return ObjectToLong(obj, 0);
             }
             return 0;
         }
         public static long? GetNullabelLong(object obj)
         {
-            return JToolConvert.ObjectToNullabelLong(obj);
+            return ObjectToNullabelLong(obj);
         }
         public static int? GetNullabelInt(object obj)
         {
-            return JToolConvert.ObjectToNullabelInt(obj);
+            return ObjectToNullabelInt(obj);
         }
         /// <summary>
         /// 返回时间
@@ -89,7 +89,7 @@ namespace EasyHttp.Tool
         }
         public static DateTime GetNoNullDateTime(object obj)
         {
-            return JToolConvert.GetNoNullDateTime(obj, DateTime.Parse("1900-01-01"));
+            return GetNoNullDateTime(obj, DateTime.Parse("1900-01-01"));
         }
         public static DateTime? GetNullabelDateTime(object obj)
         {
@@ -125,7 +125,7 @@ namespace EasyHttp.Tool
         }
         public static decimal GetNoNullDecimal(object obj)
         {
-            return JToolConvert.GetNoNullDecimal(obj, 0m);
+            return GetNoNullDecimal(obj, 0m);
         }
         public static decimal? GetNullabelDecimal(object obj)
         {
@@ -161,7 +161,7 @@ namespace EasyHttp.Tool
         }
         public static bool GetNoNullBool(object obj)
         {
-            return JToolConvert.GetNoNullBool(obj, false);
+            return GetNoNullBool(obj, false);
         }
         public static bool? GetNullabelBool(object obj)
         {
@@ -178,7 +178,7 @@ namespace EasyHttp.Tool
         }
         public static string ToDateString(object var)
         {
-            return JToolConvert.ToDateString(var, null);
+            return ToDateString(var, null);
         }
         public static string ToDateString(object var, string defaultValue)
         {
@@ -192,7 +192,7 @@ namespace EasyHttp.Tool
         }
         public static string ToDateTimeString(object var)
         {
-            return JToolConvert.ToDateTimeString(var, null);
+            return ToDateTimeString(var, null);
         }
         public static string ToDateTimeString(object var, string defaultValue)
         {
@@ -454,7 +454,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的bool类型结果</returns>
         public static bool ObjectToBool(object obj)
         {
-            return obj != null && JToolConvert.StrToBool(JToolConvert.GetNullableString(obj), false);
+            return obj != null && StrToBool(GetNullableString(obj), false);
         }
         /// <summary>
         /// object型转换为bool型
@@ -466,7 +466,7 @@ namespace EasyHttp.Tool
         {
             if (obj != null)
             {
-                return JToolConvert.StrToBool(JToolConvert.GetNullableString(obj), defValue);
+                return StrToBool(GetNullableString(obj), defValue);
             }
             return defValue;
         }
@@ -478,7 +478,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的bool类型结果</returns>
         public static bool StrToBool(string str)
         {
-            return JToolConvert.StrToBool(str, true);
+            return StrToBool(str, true);
         }
         /// <summary>
         /// string型转换为bool型
@@ -522,7 +522,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static int ObjectToInt(object obj)
         {
-            return JToolConvert.ObjectToInt(obj, 0);
+            return ObjectToInt(obj, 0);
         }
         /// <summary>
         /// 将对象转换为Int32类型
@@ -534,7 +534,7 @@ namespace EasyHttp.Tool
         {
             if (obj != null)
             {
-                return JToolConvert.StrToInt(JToolConvert.GetNullableString(obj), defValue);
+                return StrToInt(GetNullableString(obj), defValue);
             }
             return defValue;
         }
@@ -546,7 +546,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的long类型结果</returns>
         public static long ObjectToLong(object obj)
         {
-            return JToolConvert.ObjectToLong(obj, 0);
+            return ObjectToLong(obj, 0);
         }
         /// <summary>
         /// 将对象转换为long类型
@@ -558,7 +558,7 @@ namespace EasyHttp.Tool
         {
             if (obj != null)
             {
-                return JToolConvert.StrToLong(JToolConvert.GetNullableString(obj), defValue);
+                return StrToLong(GetNullableString(obj), defValue);
             }
             return defValue;
         }
@@ -569,7 +569,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static int StrToInt(string str)
         {
-            return JToolConvert.StrToInt(str, 0);
+            return StrToInt(str, 0);
         }
 
         /// <summary>
@@ -579,7 +579,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的long类型结果</returns>
         public static long StrToLong(string str)
         {
-            return JToolConvert.StrToLong(str, 0);
+            return StrToLong(str, 0);
         }
 
         /// <summary>
@@ -599,7 +599,7 @@ namespace EasyHttp.Tool
             {
                 return result;
             }
-            return Convert.ToInt32(JToolConvert.StrToFloat(str, (float)defValue));
+            return Convert.ToInt32(StrToFloat(str, (float)defValue));
         }
 
         /// <summary>
@@ -630,7 +630,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static int? ObjectToNullabelInt(object obj)
         {
-            return JToolConvert.StrToNullabelInt(JToolConvert.GetNullableString(obj));
+            return StrToNullabelInt(GetNullableString(obj));
         }
         /// <summary>
         /// 将对象转换为Int32类型
@@ -649,7 +649,7 @@ namespace EasyHttp.Tool
             {
                 return new int?(value);
             }
-            return new int?(Convert.ToInt32(JToolConvert.StrToNullabelFloat(str)));
+            return new int?(Convert.ToInt32(StrToNullabelFloat(str)));
         }
         /// <summary>
         /// 将对象转换为long类型
@@ -659,7 +659,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的long类型结果</returns>
         public static long? ObjectToNullabelLong(object obj)
         {
-            return JToolConvert.StrToNullabelLong(JToolConvert.GetNullableString(obj));
+            return StrToNullabelLong(GetNullableString(obj));
         }
         /// <summary>
         /// 将对象转换为long类型
@@ -678,7 +678,7 @@ namespace EasyHttp.Tool
             {
                 return new long?(value);
             }
-            return new long?(Convert.ToInt64(JToolConvert.StrToNullabelFloat(str)));
+            return new long?(Convert.ToInt64(StrToNullabelFloat(str)));
         }
         /// <summary>
         /// 对象型转换为float型
@@ -692,7 +692,7 @@ namespace EasyHttp.Tool
             {
                 return 0f;
             }
-            return JToolConvert.StrToFloat(JToolConvert.GetNullableString(obj), 0f);
+            return StrToFloat(GetNullableString(obj), 0f);
         }
         /// <summary>
         /// 对象型转换为float型
@@ -706,7 +706,7 @@ namespace EasyHttp.Tool
             {
                 return defValue;
             }
-            return JToolConvert.StrToFloat(JToolConvert.GetNullableString(obj), defValue);
+            return StrToFloat(GetNullableString(obj), defValue);
         }
         /// <summary>
         /// string型转换为Double型
@@ -719,8 +719,9 @@ namespace EasyHttp.Tool
             {
                 return 0f;
             }
-            return JToolConvert.StrToFloat(str.ToString(), 0f);
+            return StrToFloat(str.ToString(), 0f);
         }
+        
         /// <summary>
         /// string型转换为float型
         /// </summary>
@@ -752,7 +753,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static float? ObjectToNullabelFloat(object obj)
         {
-            return JToolConvert.StrToNullabelFloat(JToolConvert.GetNullableString(obj));
+            return StrToNullabelFloat(GetNullableString(obj));
         }
         /// <summary>
         /// string型转换为float型
@@ -785,7 +786,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的Double类型结果</returns>
         public static double ObjectToDouble(object obj)
         {
-            return JToolConvert.StrToDouble(JToolConvert.GetNullableString(obj), 0.0);
+            return StrToDouble(GetNullableString(obj), 0.0);
         }
         /// <summary>
         /// object型转换为Double型
@@ -795,7 +796,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的Double类型结果</returns>
         public static double ObjectToDouble(object obj, double defValue)
         {
-            return JToolConvert.StrToDouble(JToolConvert.GetNullableString(obj), defValue);
+            return StrToDouble(GetNullableString(obj), defValue);
         }
         /// <summary>
         /// string型转换为Double型
@@ -808,7 +809,7 @@ namespace EasyHttp.Tool
             {
                 return 0.0;
             }
-            return JToolConvert.StrToDouble(str.ToString(), 0.0);
+            return StrToDouble(str.ToString(), 0.0);
         }
         /// <summary>
         /// string型转换为float型
@@ -841,7 +842,7 @@ namespace EasyHttp.Tool
         /// <returns>转换后的int类型结果</returns>
         public static double? ObjectToNullabelDouble(object obj)
         {
-            return JToolConvert.StrToNullabelDouble(JToolConvert.GetNullableString(obj));
+            return StrToNullabelDouble(GetNullableString(obj));
         }
         /// <summary>
         /// string型转换为float型
@@ -944,7 +945,7 @@ namespace EasyHttp.Tool
         /// <returns></returns>
         public static double GetNoNullDouble(object obj)
         {
-            return JToolConvert.GetNoNullDouble(obj, 0d);
+            return GetNoNullDouble(obj, 0d);
         }
 
         /// <summary>

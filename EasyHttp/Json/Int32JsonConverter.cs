@@ -15,7 +15,7 @@ namespace EasyHttp.Json
         {
             if (reader.TokenType == JsonTokenType.String)
             {
-                int value = JToolConvert.GetNoNullInt32(reader.GetString());
+                int value = EhConvert.GetNoNullInt32(reader.GetString());
                 return value;
             }
 

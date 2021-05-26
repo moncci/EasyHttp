@@ -21,7 +21,7 @@ namespace EasyHttp.Json
                 }
                 else
                 {
-                    long value = JToolConvert.GetNoNullLong(reader.GetString());
+                    long value = EhConvert.GetNoNullLong(reader.GetString());
                     return value;
                 }
             }

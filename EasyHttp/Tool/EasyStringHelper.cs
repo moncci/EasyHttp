@@ -6,6 +6,11 @@ namespace EasyHttp.Tool
 {
     public static class EasyStringHelper
     {
+        /// <summary>
+        /// 去除空格
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static string EasyTrimEx(this string text)
         {
             if (string.IsNullOrEmpty(text))

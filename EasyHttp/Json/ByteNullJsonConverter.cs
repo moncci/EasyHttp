@@ -31,7 +31,7 @@ namespace EasyHttp.Json
         {
             if (value != null)
             {
-                writer.WriteStringValue(JToolConvert.GetNoNullString(value));
+                writer.WriteStringValue(EhConvert.GetNoNullString(value));
             }
         }
     }

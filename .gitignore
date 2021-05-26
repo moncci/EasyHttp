@@ -65,3 +65,6 @@ TestResults
 bin
 obj
 .vs
+/EasyHttp/EasyHttp.csproj.user
+/EasyHttp/Properties/PublishProfiles/FolderProfile.pubxml
+/EasyHttp/Properties/PublishProfiles/FolderProfile.pubxml.user

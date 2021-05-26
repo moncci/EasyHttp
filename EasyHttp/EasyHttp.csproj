@@ -1,7 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
+    <Version>5.0.3.0</Version>
+    <Authors>joey</Authors>
+    <Description>http访问库</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -9,9 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\Lib\HtmlAgilityPack.dll</HintPath>
-    </Reference>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.32" />
   </ItemGroup>
 
 </Project>

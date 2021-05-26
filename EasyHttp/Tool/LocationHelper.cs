@@ -7,7 +7,7 @@ namespace EasyHttp.Tool
     /// <summary>
     /// 位置帮助类
     /// </summary>
-    public class LocationHelper
+    internal class LocationHelper
     {
         //public void sss()
         //{

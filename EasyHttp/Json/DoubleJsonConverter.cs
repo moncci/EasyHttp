@@ -15,7 +15,7 @@ namespace EasyHttp.Json
         {
             if (reader.TokenType == JsonTokenType.String)
             {
-                double value = JToolConvert.GetNoNullDouble(reader.GetString());
+                double value = EhConvert.GetNoNullDouble(reader.GetString());
                 return value;
             }
 
