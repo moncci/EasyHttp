@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class SByteNullJsonConverter : JsonConverter<SByte?>
+    internal class SByteNullJsonConverter : JsonConverter<SByte?>
     {
         public override SByte? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

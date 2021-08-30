@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class DecimalJsonConverter : JsonConverter<decimal>
+    internal class DecimalJsonConverter : JsonConverter<decimal>
     {
         public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

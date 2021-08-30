@@ -8,7 +8,7 @@ namespace EasyHttp.Json
     /// <summary>
     /// 保持和原属性名称大小写相同的名称
     /// </summary>
-    public class KeepJsonNamingPolicy : JsonNamingPolicy
+    internal class KeepJsonNamingPolicy : JsonNamingPolicy
     {
         /// <summary>
         /// 转换名称 直接返回原名称

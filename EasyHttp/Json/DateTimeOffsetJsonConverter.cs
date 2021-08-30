@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class DateTimeOffsetJsonConverter : JsonConverter<DateTimeOffset>
+    internal class DateTimeOffsetJsonConverter : JsonConverter<DateTimeOffset>
     {
         public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

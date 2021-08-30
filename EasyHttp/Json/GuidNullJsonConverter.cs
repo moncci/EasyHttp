@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class GuidNullJsonConverter : JsonConverter<Guid?>
+    internal class GuidNullJsonConverter : JsonConverter<Guid?>
     {
         public override Guid? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

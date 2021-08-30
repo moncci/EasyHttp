@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class GuidJsonConverter : JsonConverter<Guid>
+    internal class GuidJsonConverter : JsonConverter<Guid>
     {
         public override Guid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

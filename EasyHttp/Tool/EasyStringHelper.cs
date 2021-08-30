@@ -11,7 +11,7 @@ namespace EasyHttp.Tool
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static string EasyTrimEx(this string text)
+        internal static string EasyTrimExIn(this string text)
         {
             if (string.IsNullOrEmpty(text))
             {
@@ -26,6 +26,16 @@ namespace EasyHttp.Tool
                 temp = temp.Trim();
                 return temp;
             }
+        }
+
+        /// <summary>
+        /// 去除空格
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string EasyTrimEx(this string text)
+        {
+            return EasyTrimExIn(text);
         }
     }
 }

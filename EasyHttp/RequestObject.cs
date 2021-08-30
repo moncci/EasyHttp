@@ -7,6 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using EasyHttp.Def;
 using EasyHttp.Enum;
+using EasyHttp.Model;
+using EasyHttp.Tool;
+using System.Reflection;
 
 namespace EasyHttp
 {
@@ -15,6 +18,7 @@ namespace EasyHttp
     /// </summary>
     public class RequestObject
     {
+        #region 属性
         /// <summary>
         /// 请求的地址
         /// </summary>
@@ -201,6 +205,12 @@ namespace EasyHttp
         /// 是否更新cookie
         /// </summary>
         public bool IsUpdateCookie { get; set; }
+        #endregion
+
+
+        #region 公共方法
+
+        #region 设置证书
         /// <summary>
         /// 设置证书
         /// </summary>
@@ -211,7 +221,9 @@ namespace EasyHttp
             CertificateList = new List<X509Certificate>();
             AddCertificatePrivate(path, password);
         }
+        #endregion
 
+        #region 添加证书
         /// <summary>
         /// 添加证书
         /// </summary>
@@ -221,7 +233,9 @@ namespace EasyHttp
         {
             AddCertificatePrivate(path, password);
         }
+        #endregion
 
+        #region 设置请求负载
         /// <summary>
         /// 设置请求负载
         /// </summary>
@@ -233,7 +247,9 @@ namespace EasyHttp
                 Payload = PostEncoding.GetBytes(value);
             }
         }
+        #endregion
 
+        #region 设置请求负载
         /// <summary>
         /// 设置请求负载
         /// </summary>
@@ -245,11 +261,13 @@ namespace EasyHttp
                 Payload = value;
             }
         }
+        #endregion
 
+        #region 设置请求负载
         /// <summary>
         /// 设置请求负载
         /// </summary>
-        /// <param name="value">请求内容</param>
+        /// <param name="filePath">文件路径</param>
         public void SetPayloadFilePath(string filePath)
         {
             if (!string.IsNullOrWhiteSpace(filePath))
@@ -263,8 +281,40 @@ namespace EasyHttp
                 }
             }
         }
+        #endregion
+
+        #region 设置请求负载(form-data模式，上传文件)
+        /// <summary>
+        /// 设置请求负载(form-data模式，上传文件)
+        /// </summary>
+        /// <param name="formItems">文件字段</param>
+        public void SetPayloadByPostFormData(List<FormItemModel> formItems)
+        {
+            PostHelper.PostFormFile(this, formItems);
+        }
+        #endregion
+
+        #region 设置请求负载(application/x-www-form-urlencoded模式)
+        /// <summary>
+        /// 设置请求负载(application/x-www-form-urlencoded模式)
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="model">上传对象</param>
+        public void SetPayloadByPostFormUrlencoded<T>(T model)
+        {
+            string postData = PostHelper.GetPostDataFormWwwUrlencoded<T>(model);
+            this.Method = MethodDef.POST;
+            this.ContentType = RequestContentTypeDef.FORM;
+            this.SetPayload(postData);
+        } 
+        #endregion
+
+        #endregion
 
 
+        #region 私有
+
+        #region 添加证书
         /// <summary>
         /// 添加证书
         /// </summary>
@@ -290,5 +340,8 @@ namespace EasyHttp
                 throw new EasyHttpException("证书文件不存在。");
             }
         }
+        #endregion 
+
+        #endregion
     }
 }

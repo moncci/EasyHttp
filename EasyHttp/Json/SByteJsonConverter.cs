@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class SByteJsonConverter : JsonConverter<SByte>
+    internal class SByteJsonConverter : JsonConverter<SByte>
     {
         public override SByte Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

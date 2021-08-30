@@ -322,6 +322,32 @@
             ContentType
             </summary>
         </member>
+        <member name="T:EasyHttp.Model.DemainModel">
+            <summary>
+            域名对象
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.DemainModel.Title">
+            <summary>
+            http / https
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.DemainModel.Demain">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.DemainModel.Port">
+            <summary>
+            端口
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Model.DemainModel.GetUrl">
+            <summary>
+            获取url
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:EasyHttp.Model.FormItemModel">
             <summary>
             表单数据项
@@ -350,6 +376,16 @@
         <member name="P:EasyHttp.Model.FormItemModel.FileContent">
             <summary>
             上传的文件内容
+            </summary>
+        </member>
+        <member name="T:EasyHttp.Model.PostNameAttribute">
+            <summary>
+            post名称特性
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Model.PostNameAttribute.PostName">
+            <summary>
+            名称
             </summary>
         </member>
         <member name="T:EasyHttp.Model.TagA">
@@ -723,7 +759,20 @@
             <summary>
             设置请求负载
             </summary>
-            <param name="value">请求内容</param>
+            <param name="filePath">文件路径</param>
+        </member>
+        <member name="M:EasyHttp.RequestObject.SetPayloadByPostFormData(System.Collections.Generic.List{EasyHttp.Model.FormItemModel})">
+            <summary>
+            设置请求负载(form-data模式，上传文件)
+            </summary>
+            <param name="formItems">文件字段</param>
+        </member>
+        <member name="M:EasyHttp.RequestObject.SetPayloadByPostFormUrlencoded``1(``0)">
+            <summary>
+            设置请求负载(application/x-www-form-urlencoded模式)
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="model">上传对象</param>
         </member>
         <member name="M:EasyHttp.RequestObject.AddCertificatePrivate(System.String,System.String)">
             <summary>
@@ -863,11 +912,100 @@
             <param name="encoding">字符编码</param>
             <returns></returns>
         </member>
+        <member name="M:EasyHttp.Tool.Base64Helper.DecodeBase64(System.String,System.Text.Encoding)">
+            <summary>
+            将base64转为字符串
+            </summary>
+            <param name="base64">字符编码</param>
+            <param name="encoding">原始字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.Base64Helper.EncodeBase64In(System.String,System.Text.Encoding)">
+            <summary>
+            将字符串编码为base64
+            </summary>
+            <param name="source">原始字符串</param>
+            <param name="encoding">字符编码</param>
+            <returns></returns>
+        </member>
+        <member name="T:EasyHttp.Tool.ConnectorHelper">
+            <summary>
+            接口帮助类
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Tool.ConnectorHelper.GetDemain(System.String)">
+            <summary>
+            获取域名
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.ConnectorHelper.GetDomainIP(System.String)">
+            <summary>
+            获取域名
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.ContentTypeHelper.GetContentTypeByNameIn(System.String)">
+            <summary>
+            获取contentType
+            </summary>
+            <param name="fileName">文件名称</param>
+            <returns></returns>
+        </member>
         <member name="M:EasyHttp.Tool.ContentTypeHelper.GetContentTypeByName(System.String)">
             <summary>
             获取contentType
             </summary>
             <param name="fileName">文件名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:EasyHttp.Tool.CookieCache">
+            <summary>
+            cookie缓存
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Tool.CookieCache.SetCookie(System.String,System.String,System.String)">
+            <summary>
+            设置cookie
+            </summary>
+            <param name="cookie"></param>
+            <param name="demainUrl">现勘系统登录地址域</param>
+            <param name="userNo">登录用户名</param>
+        </member>
+        <member name="M:EasyHttp.Tool.CookieCache.ClearText(System.String)">
+            <summary>
+            清空文本
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.CookieCache.GetCookie(System.String,System.String)">
+            <summary>
+            获取cookie
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.CookieCache.DeleteCookie(System.String,System.String)">
+            <summary>
+            删除cookie
+            </summary>
+            <param name="demainUrl">域名</param>
+            <param name="userNo">用户名</param>
+        </member>
+        <member name="M:EasyHttp.Tool.CookieCache.GetFileName(System.String,System.String)">
+            <summary>
+            文件名称
+            </summary>
+            <param name="demainUrl">url域</param>
+            <param name="userNo">用户名</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.EasyStringHelper.EasyTrimExIn(System.String)">
+            <summary>
+            去除空格
+            </summary>
+            <param name="text"></param>
             <returns></returns>
         </member>
         <member name="M:EasyHttp.Tool.EasyStringHelper.EasyTrimEx(System.String)">
@@ -876,6 +1014,22 @@
             </summary>
             <param name="text"></param>
             <returns></returns>
+        </member>
+        <member name="T:EasyHttp.Tool.EhBusinessStatic">
+            <summary>
+            业务静态类
+            </summary>
+        </member>
+        <member name="P:EasyHttp.Tool.EhBusinessStatic.BusinessName">
+            <summary>
+            实现业务的名称
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Tool.EhBusinessStatic.SetBusinessName(System.String)">
+            <summary>
+            设置实现业务的名称
+            </summary>
+            <param name="businessName">业务的名称</param>
         </member>
         <member name="T:EasyHttp.Tool.EhConvert">
             <summary>
@@ -1199,6 +1353,150 @@
             </summary>
             <param name="obj"></param>
             <returns></returns>
+        </member>
+        <member name="T:EasyHttp.Tool.EhLog">
+            <summary>
+            日志对象
+            </summary>
+        </member>
+        <member name="F:EasyHttp.Tool.EhLog._lockHelper">
+            <summary>
+            锁对象
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteErrorLogTxt(System.String)">
+            <summary>
+            法描述：写错误日志。
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteDebugLogTxt(System.String)">
+            <summary>
+            法描述：写Debug日志。
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteWarningLogTxt(System.String)">
+            <summary>
+            法描述：写Warning日志。
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteInfoLogTxt(System.String)">
+            <summary>
+            法描述：写Info日志。
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteExceptionLogTxt(System.String)">
+            <summary>
+            法描述：写Info日志。
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteRefreshRunLogTxt(System.String)">
+            <summary>
+            法描述：写Info日志。
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteDebugLog(System.String)">
+            <summary>
+            调试
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteErrorLog(System.String)">
+            <summary>
+            错误
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteWarningLog(System.String)">
+            <summary>
+            警告
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteInfoLog(System.String)">
+            <summary>
+            普通信息
+            </summary>
+            <param name="strContent"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteExceptionLog(System.Exception)">
+            <summary>
+            异常
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteExceptionLog(System.Exception,System.String)">
+            <summary>
+            异常
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:EasyHttp.Tool.EhLog.WriteRefreshRunLog(System.String)">
+            <summary>
+            异常
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="T:EasyHttp.Tool.EhMd5">
+            <summary>
+            MD5帮助类
+            </summary>
+        </member>
+        <member name="M:EasyHttp.Tool.EhMd5.GetMd5(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="content">加密内容</param>
+            <returns>经过加密后的MD5字符</returns>
+        </member>
+        <member name="M:EasyHttp.Tool.EhMd5.GetMd5(System.Byte[])">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="content">加密内容</param>
+            <returns>经过加密后的MD5字节</returns>
+        </member>
+        <member name="M:EasyHttp.Tool.EhMd5.GetMd5FromFile(System.String)">
+            <summary>
+            获取文件MD5值
+            </summary>
+            <param name="fileName">文件绝对路径</param>
+            <returns>MD5值</returns>
+        </member>
+        <member name="M:EasyHttp.Tool.EhMd5.Compare(System.String,System.String)">
+            <summary>
+            比较内容是否一致
+            </summary>
+            <param name="contentA">比较的内容</param>
+            <param name="contentB">比较的内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.EhMd5.Compare(System.Byte[],System.Byte[])">
+            <summary>
+            比较内容是否一致
+            </summary>
+            <param name="contentA">比较的内容</param>
+            <param name="contentB">比较的内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.EhMd5.GetMd5In(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="content">加密内容</param>
+            <returns>经过加密后的MD5字符</returns>
+        </member>
+        <member name="M:EasyHttp.Tool.EhMd5.GetMd5FromFileIn(System.String)">
+            <summary>
+            获取文件MD5值
+            </summary>
+            <param name="fileName">文件绝对路径</param>
+            <returns>MD5值</returns>
         </member>
         <member name="F:EasyHttp.Tool.EhTool.AssemblyFileVersion">
             <summary>
@@ -2058,15 +2356,51 @@
             位置帮助类
             </summary>
         </member>
+        <member name="T:EasyHttp.Tool.PostHelper">
+            <summary>
+            post帮助类
+            </summary>
+        </member>
         <member name="M:EasyHttp.Tool.PostHelper.PostFormFile(EasyHttp.RequestObject,System.Collections.Generic.List{EasyHttp.Model.FormItemModel})">
             <summary>
-            获取上传文件请求对象
+            获取上传文件请求对象(form-data)
             </summary>
             <param name="reqObjTemp"></param>
             <param name="formItems">文件字段</param>
             <returns></returns>
         </member>
         <member name="M:EasyHttp.Tool.PostHelper.GetFileContent(System.String)">
+            <summary>
+            获取文件byte数组
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.PostHelper.GetPostDataFormWwwUrlencoded``1(``0)">
+            <summary>
+            获取post请求数据(application/x-www-form-urlencoded模式)
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="model">上传对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.PostHelper.GetPostDataFormWwwUrlencodedIn``1(``0)">
+            <summary>
+            获取post请求数据(application/x-www-form-urlencoded模式)
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="model">上传对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.PostHelper.PostFormFileIn(EasyHttp.RequestObject,System.Collections.Generic.List{EasyHttp.Model.FormItemModel})">
+            <summary>
+            获取上传文件请求对象(form-data)
+            </summary>
+            <param name="reqObjTemp"></param>
+            <param name="formItems">文件字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.PostHelper.GetFileContentIn(System.String)">
             <summary>
             获取文件byte数组
             </summary>
@@ -2260,6 +2594,32 @@
             </summary>
             <param name="html">html</param>
             <param name="tagName">标签名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.TagHelper.GetSubTagList``1(System.String)">
+            <summary>
+            获取子节点
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html">html</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.TagHelper.GetSubTagList``1(System.String,EasyHttp.Model.TagType)">
+            <summary>
+            获取子节点
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html">html</param>
+            <param name="tagType">节点类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:EasyHttp.Tool.TagHelper.GetSubTagListIn``1(System.String,EasyHttp.Model.TagType)">
+            <summary>
+            获取子节点
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html">html</param>
+            <param name="tagType">节点类型</param>
             <returns></returns>
         </member>
         <member name="M:EasyHttp.Tool.TagHelper.GetTagList``1(System.String,EasyHttp.Model.TagType,System.Collections.Generic.List{EasyHttp.Model.TagAttr})">

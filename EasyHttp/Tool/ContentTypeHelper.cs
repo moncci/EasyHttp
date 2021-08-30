@@ -392,7 +392,7 @@ namespace EasyHttp.Tool
         /// </summary>
         /// <param name="fileName">文件名称</param>
         /// <returns></returns>
-        public string GetContentTypeByName(string fileName)
+        internal string GetContentTypeByNameIn(string fileName)
         {
             lock (_lockObj)
             {
@@ -419,6 +419,16 @@ namespace EasyHttp.Tool
                     return string.Empty;
                 }
             }
+        }
+
+        /// <summary>
+        /// 获取contentType
+        /// </summary>
+        /// <param name="fileName">文件名称</param>
+        /// <returns></returns>
+        public string GetContentTypeByName(string fileName)
+        {
+            return GetContentTypeByNameIn(fileName);
         }
     }
 }

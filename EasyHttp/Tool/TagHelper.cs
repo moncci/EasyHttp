@@ -384,6 +384,92 @@ namespace EasyHttp.Tool
         }
         #endregion
 
+        #region 获取子节点
+        /// <summary>
+        /// 获取子节点
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="html">html</param>
+        /// <returns></returns>
+        public static List<T> GetSubTagList<T>(this string html) where T : TagBase, new()
+        {
+            return GetSubTagList<T>(html, TagType.none);
+        }
+        #endregion
+
+        #region 获取子节点
+        /// <summary>
+        /// 获取子节点
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="html">html</param>
+        /// <param name="tagType">节点类型</param>
+        /// <returns></returns>
+        public static List<T> GetSubTagList<T>(this string html, TagType tagType) where T : TagBase, new()
+        {
+            return GetSubTagListIn<T>(html, tagType);
+        }
+        #endregion
+
+        #region 获取子节点
+        /// <summary>
+        /// 获取子节点
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="html">html</param>
+        /// <param name="tagType">节点类型</param>
+        /// <returns></returns>
+        private static List<T> GetSubTagListIn<T>(string html, TagType tagType) where T : TagBase, new()
+        {
+            List<HtmlNode> selectNodeList = new List<HtmlNode>();
+            List<T> selectElementList = null;
+            if (!string.IsNullOrWhiteSpace(html))
+            {
+                HtmlDocument htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(html);
+                if (htmlDoc == null)
+                {
+                    return null;
+                }
+                string tagName = GetTagNameString(tagType);
+
+                HtmlNodeCollection subNodes = htmlDoc.DocumentNode.FirstChild.ChildNodes;
+                if (subNodes != null && subNodes.Count > 0)
+                {
+                    foreach (HtmlNode node in subNodes)
+                    {
+                        if (node.Name != "#text")
+                        {
+                            if (string.IsNullOrEmpty(tagName))
+                            {
+                                selectNodeList.Add(node);
+                            }
+                            else
+                            {
+                                if (node.Name == tagName)
+                                {
+                                    selectNodeList.Add(node);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (selectNodeList != null && selectNodeList.Count > 0)
+                {
+                    selectElementList = new List<T>();
+                    foreach (HtmlNode node in selectNodeList)
+                    {
+                        T tag = new T();
+                        tag.IniNode(node);
+                        selectElementList.Add(tag);
+                    }
+                }
+            }
+            return selectElementList;
+        } 
+        #endregion
+
         #region 获取所有的图片标签
         /// <summary>
         /// 获取所有的图片标签
@@ -406,7 +492,7 @@ namespace EasyHttp.Tool
         /// <param name="tagType">标签类型</param>
         /// <param name="attrList">属性链表</param>
         /// <returns></returns>
-        private static List<T> GetTagList<T>(string html, TagType tagType, List<TagAttr> attrList) where T : TagBase,new()
+        private static List<T> GetTagList<T>(string html, TagType tagType, List<TagAttr> attrList) where T : TagBase, new()
         {
             List<HtmlNode> selectNodeList = new List<HtmlNode>();
             List<T> selectElementList = null;

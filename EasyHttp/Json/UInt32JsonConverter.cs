@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class UInt32JsonConverter : JsonConverter<UInt32>
+    internal class UInt32JsonConverter : JsonConverter<UInt32>
     {
         public override UInt32 Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

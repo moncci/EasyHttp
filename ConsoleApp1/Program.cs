@@ -9,7 +9,22 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            WeatherTest.Instance.Get();
+            EhBusinessStatic.SetBusinessName("test");
+            EhLog.WriteDebugLog("debug");
+            EhLog.WriteErrorLog("error");
+            try
+            {
+                throw new Exception("异常了");
+            }
+            catch (Exception ex)
+            {
+
+                EhLog.WriteExceptionLog(ex);
+            }
+            EhLog.WriteInfoLog("info");
+            EhLog.WriteRefreshRunLog("refresh");
+            EhLog.WriteWarningLog("warn");
+            //WeatherTest.Instance.Get();
             Console.WriteLine("Hello World!");
             Console.ReadLine();
         }
@@ -61,3 +76,4 @@ namespace ConsoleApp1
         }
     }
 }
+

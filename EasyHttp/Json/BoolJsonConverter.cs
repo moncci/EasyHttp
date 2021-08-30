@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class BoolJsonConverter : JsonConverter<bool>
+    internal class BoolJsonConverter : JsonConverter<bool>
     {
         public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

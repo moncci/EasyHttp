@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class DoubleNullJsonConverter : JsonConverter<double?>
+    internal class DoubleNullJsonConverter : JsonConverter<double?>
     {
         public override double? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

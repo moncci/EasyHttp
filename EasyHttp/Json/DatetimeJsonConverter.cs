@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace EasyHttp.Json
 {
-    public class DatetimeJsonConverter : JsonConverter<DateTime>
+    internal class DatetimeJsonConverter : JsonConverter<DateTime>
     {
         /// <summary>
         /// 获取或设置DateTime格式
